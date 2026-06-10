@@ -9,26 +9,29 @@
         * Date Last Modified: June --, 2026
 
         */
-       import java.time.format.DateTimeFormatter;
+        import java.time.format.DateTimeFormatter;
         import java.util.Scanner;
         import java.util.HashMap;
         import javafx.util.Duration;
         import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+        import javafx.animation.PauseTransition;
+        import javafx.animation.Timeline;
         import javafx.application.Application;
         import javafx.geometry.Insets;
         import javafx.scene.Scene;
         import javafx.scene.layout.StackPane;
-        import javafx.stage.Stage;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+        import javafx.scene.text.Font;
+        import javafx.scene.text.Text;
         import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-        import javafx.scene.control.Button;
+        import javafx.scene.layout.ColumnConstraints;
+        import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
         import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+        import javafx.scene.control.TextField;
+        import javafx.scene.shape.Rectangle;
 
         public class Culminating extends Application {
 	@Override
@@ -57,9 +60,21 @@ import javafx.scene.control.TextField;
 
                 int HPos = 0;
 
-                GridPane.setHalignment(primaryStage, HPos);
+                Rectangle rectangle = new Rectangle();
+        rectangle.setX(200);
+        rectangle.setY(200);
+        rectangle.setWidth(300);
+        rectangle.setHeight(400);
+        rectangle.setStroke(Color.TRANSPARENT);
+
+        Pane pane = new Pane();
+        pane.getChildren().add(rectangle);
+
+        Scene scene = new Scene(pane, 1024, 800, true);
+
+
                 root.setCenter(grid);
-                Scene scene = new Scene(root);
+                Scene scene2 = new Scene(root);
                 campbellyFeud.setScene(scene);
                 campbellyFeud.setTitle("Campbelly Feud");
                 campbellyFeud.show();
@@ -225,7 +240,7 @@ timeline.play();
        check if ans == answer1
        if true, reveal answer & add points to point counter
        if false
-         check if ans == answer 2 etc...
+        check if ans == answer 2 etc...
         if timer == 0, ans = false
 if ans = false, add 1 strike
 if strike == 3
@@ -233,3 +248,5 @@ if strike == 3
 if answer 1 == true, answer 2 == true, answer 3 == true, etc
 "congratulations, you win"
 */
+
+//i tried so hard to understand this and to make something playable. I couldn't get it to work and I couldn't figure out how to include everything in time. I'm sorry to disappoint, please grade this on effort instead of product.
