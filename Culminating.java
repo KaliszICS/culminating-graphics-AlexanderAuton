@@ -9,29 +9,103 @@
         * Date Last Modified: June --, 2026
 
         */
+       import java.time.format.DateTimeFormatter;
         import java.util.Scanner;
         import java.util.HashMap;
+        import javafx.util.Duration;
+        import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
         import javafx.application.Application;
+        import javafx.geometry.Insets;
         import javafx.scene.Scene;
         import javafx.scene.layout.StackPane;
         import javafx.stage.Stage;
-        import javafx.scene.text.Text;
-        import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+        import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+        import javafx.scene.control.Button;
+        import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
         public class Culminating extends Application {
-	   //and so it begins
-public void start(Stage campbellyFeud){
+	@Override
+        public void start(Stage campbellyFeud){
+                BorderPane root = new BorderPane();
+
+                GridPane grid = new GridPane();
+                grid.setGridLinesVisible(true);
+
+                Label primaryStage = new Label("Text");
+                TextField name2 = new TextField("Text2");
+                Button name3 = new Button("text3");
+                Button bBName = new Button();
+                grid.add(primaryStage, 0,0,0,0);
+                grid.add(name2, 1,1,1,1);
+
+                grid.setHgap(0);
+                grid.setVgap(0);
+
+                grid.setPadding(new Insets(3,3,3,3));
+
+                ColumnConstraints column1 = new ColumnConstraints();
+                grid.getColumnConstraints().add(column1);
+
+                column1.setPrefWidth(2);
+
+                int HPos = 0;
+
+                GridPane.setHalignment(primaryStage, HPos);
+                root.setCenter(grid);
+                Scene scene = new Scene(root);
+                campbellyFeud.setScene(scene);
+                campbellyFeud.setTitle("Campbelly Feud");
+                campbellyFeud.show();
+                }
+                public class CountdownApp extends Application {
+    private int secondsRemaining = 30; //Start Time
+
+    @Override
+    public void start(Stage primaryStage) {
+        Label timerLabel = new Label(String.valueOf(secondsRemaining));
+        timerLabel.setFont(new Font("Arial", 45));
 
         
-        GridPane root = new GridPane();
-        Scene board = new Scene(root,100,100);
-        stage.setScene(scene);
-        stage.setTitle("Campbelly Feud");
-        stage.show();
-        campbellyFeud.setScene(board);
-        campbellyFeud.show();
+        Timeline timeline = new Timeline();
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
+            secondsRemaining--;
+            timerLabel.setText(String.valueOf(secondsRemaining));
 
-                }
+            if (secondsRemaining <= 0) {
+                timeline.stop();
+                timerLabel.setText("STRIKE");
+            }
+        });
+
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(secondsRemaining);
+        timeline.play(); // Start the countdown
+
+        StackPane root = new StackPane(timerLabel);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.setTitle("JavaFX Countdown");
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+PauseTransition pause = new PauseTransition(Duration.seconds(30));
+pause.setOnFinished(event -> {
+        
+});
+timeline.setCycleCount(Animation.INDEFINITE);
+timeline.play();
+    
+
         public static void main(String[] args) {
                 launch(args);
                 Scanner in = new Scanner(System.in);
@@ -142,6 +216,20 @@ public void start(Stage campbellyFeud){
                 System.out.println("Invalid input, try again.");      
                 in.nextLine();
                 }
-	}
+	
 }
-        
+        }}
+
+       /*  because idk where to put this now
+       when user inputs answer
+       check if ans == answer1
+       if true, reveal answer & add points to point counter
+       if false
+         check if ans == answer 2 etc...
+        if timer == 0, ans = false
+if ans = false, add 1 strike
+if strike == 3
+"you lose, retry?"
+if answer 1 == true, answer 2 == true, answer 3 == true, etc
+"congratulations, you win"
+*/
